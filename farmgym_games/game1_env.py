@@ -27,34 +27,34 @@ class Farm1(gym.Env):
     -----
     State:
         The state consists of
-        - Day (from 1 to 365)
-        - mean air temperature (°C)
-        - min air temperature (°C)
-        - max air temperature (°C)
-        - rain amount (mm)
-        - sun-exposure (from 1 to 5)
-        - consecutive dry day (int)
-        - stage of growth of the plant (int)
-        - size of the plant in cm.
-        - Soil wet_surface#m2.day-1
-        - fertilizer amount#kg
-        - Pests plot_population#nb
-        - Pollinators occurrence#bin
-        - Weeds grow#nb
-        - Weeds flowers#nb
-        - Weight of fruits (g)
-        - Microlife health index (%)
+        * Day (from 1 to 365)
+        * mean air temperature (°C)
+        * min air temperature (°C)
+        * max air temperature (°C)
+        * rain amount (mm)
+        * sun-exposure (from 1 to 5)
+        * consecutive dry day (int)
+        * stage of growth of the plant (int)
+        * size of the plant in cm.
+        * Soil wet_surface#m2.day-1
+        * fertilizer amount#kg
+        * Pests plot_population#nb
+        * Pollinators occurrence#bin
+        * Weeds grow#nb
+        * Weeds flowers#nb
+        * Weight of fruits (g)
+        * Microlife health index (%)
 
     Actions:
         The actions are :
-        - doing nothing.
-        - 2 levels of watering the field (1L or 5L of water)
-        - harvesting
-        - sow some seeds
-        - scatter fertilizer
-        - scatter herbicide
-        - scatter pesticide
-        - remove weeds by hand
+        * doing nothing.
+        * 2 levels of watering the field (1L or 5L of water)
+        * harvesting
+        * sow some seeds
+        * scatter fertilizer
+        * scatter herbicide
+        * scatter pesticide
+        * remove weeds by hand
     """
 
     name = "Farm1"

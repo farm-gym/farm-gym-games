@@ -37,23 +37,23 @@ class Farm0(gym.Env):
     -----
     State:
         The state consists of
-        - Day (from 1 to 365)
-        - mean air temperature (°C)
-        - min air temperature (°C)
-        - max air temperature (°C)
-        - rain amount (mm)
-        - sun-exposure (from 1 to 5)
-        - consecutive dry day (int)
-        - stage of growth of the plant (int)
-        - size of the plant in cm
-        - numbre of fruits (int)
-        - weight of fruits (g).
+        * Day (from 1 to 365)
+        * mean air temperature (°C)
+        * min air temperature (°C)
+        * max air temperature (°C)
+        * rain amount (mm)
+        * sun-exposure (from 1 to 5)
+        * consecutive dry day (int)
+        * stage of growth of the plant (int)
+        * size of the plant in cm
+        * numbre of fruits (int)
+        * weight of fruits (g).
 
     Actions:
         The actions are :
-        - doing nothing.
-        - 2 levels of watering the field (1L or 5L of water)
-        - harvesting
+        * doing nothing.
+        * 2 levels of watering the field (1L or 5L of water)
+        * harvesting
     """
 
     name = "Farm0"
