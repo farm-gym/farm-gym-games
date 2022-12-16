@@ -37,6 +37,7 @@ class Farm0(gym.Env):
     -----
     State:
         The state consists of
+    
         * Day (from 1 to 365)
         * mean air temperature (°C)
         * min air temperature (°C)
@@ -51,6 +52,7 @@ class Farm0(gym.Env):
 
     Actions:
         The actions are :
+    
         * doing nothing.
         * 2 levels of watering the field (1L or 5L of water)
         * harvesting
