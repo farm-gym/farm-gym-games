@@ -74,7 +74,7 @@ class Farm0(gym.Env):
         "weight of fruits",
     ]
 
-    def __init__(self, monitor=False, enable_tensorboard=False, output_dir="results"):
+    def __init__(self):
         # init base classes
         gym.Env.__init__(self)
 
@@ -108,7 +108,7 @@ class Farm0(gym.Env):
         # Stepping
         #   farmgym run with a cycle of 2 steps: 1 (empty) step of getting observation ("morning"), then 1 step of acting ("afternoon").
         #   Classic RL methodology use only 1 step : performing an action return the next observation
-        #   To match this 2, rlberry_farms run the 'farmgy observation step ("morning")' right after the action.
+        #   To match this 2, we run the 'farmgy observation step ("morning")' right after the action.
         #   With this method, it will be like classic RL 'step' for the user
         _, reward, is_done, info = self.farm.farmgym_step(self.num_to_action(action))
         obs1, _, _, info = self.farm.gym_step([])
