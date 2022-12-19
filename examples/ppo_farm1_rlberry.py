@@ -47,9 +47,9 @@ if __name__ == "__main__":
             policy_net_kwargs=policy_configs,
             value_net_fn=model_factory_from_env,
             value_net_kwargs=value_configs,
-            learning_rate=1e-3,
-            n_steps=128,
-            batch_size=14,
+            learning_rate=9e-5,
+            n_steps=5 * 365,
+            batch_size=365,
             eps_clip=0.2,
         ),
         fit_budget=5e4,
@@ -60,6 +60,10 @@ if __name__ == "__main__":
         enable_tensorboard=True,
     )
     manager.fit()
-    evaluation = evaluate_agents([manager], n_simulations=128, plot=False).values
-    np.savetxt("ppo_farm1.out", np.array(evaluation), delimiter=",")
+    eval_means = []
+    for id_agent in range(2):
+        eval_values.append(
+                np.mean(manager.eval_agents(100, agent_id=id_agent))
+            )
+    np.savetxt("ppo_farm1.out", np.array(eval_means), delimiter=",")
 
