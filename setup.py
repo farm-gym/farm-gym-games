@@ -12,6 +12,7 @@ packages = find_packages(exclude=["docs", "notebooks", "assets"])
 install_requires = [
     "torch",
     "farmgym @ git+https://github.com/farm-gym/farm-gym",
+    "gymnasium"
 ]
 
 with open("README.md", "r") as fh:

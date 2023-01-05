@@ -3,7 +3,7 @@ import numpy as np
 
 def farmgymobs_to_obs(obs_lst):
     """
-    Exctract all the numerical values of a farmgym obs and return a flat array.
+    Extract all the numerical values of a farmgym obs and return a flat array.
     """
     res = np.array([])
     for obs in obs_lst:

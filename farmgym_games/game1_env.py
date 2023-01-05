@@ -1,5 +1,6 @@
 import gym
 from gym import spaces
+from gym.utils.step_api_compatibility import step_api_compatibility 
 import farmgym_games.farm1.farm as cb
 import numpy as np
 import time
@@ -22,6 +23,11 @@ class Farm1(gym.Env):
 
     The condition for end of episode (self.step returns done) is that the day is >= 365 or that the plant is dead.
 
+    Parameters
+    ----------
+
+    api_compatibility: False
+        If true apply step api compatibility to gym version 0.21. See https://www.gymlibrary.dev/api/utils/#gym.utils.step_api_compatibility.step_api_compatibility.
 
     Notes
     -----
@@ -81,9 +87,10 @@ class Farm1(gym.Env):
         "microlife health index (%)",
     ]
 
-    def __init__(self):
+    def __init__(self, api_compatibility = False):
         # init base classes
         gym.Env.__init__(self)
+        self.api_compatibility = api_compatibility
 
         self.farm = cb.env()
         self.farm.gym_step([])
@@ -107,11 +114,16 @@ class Farm1(gym.Env):
         self.reset()
 
     def reset(self):
-        observation = self.farm.gym_reset()
+        observation = self.farm.gym_reset()[0]
         self.farm.gym_step([])
-        return observation_hide_final_state_of_plants(
-            farmgymobs_to_obs(observation), id_of_plants_stage=7
-        )
+        if self.api_compatibility:
+            return observation_hide_final_state_of_plants(
+                farmgymobs_to_obs(observation), id_of_plants_stage=7
+            )
+        else:
+                        return observation_hide_final_state_of_plants(
+                farmgymobs_to_obs(observation), id_of_plants_stage=7
+            ), {}
 
 
     def step(self, action):
@@ -132,7 +144,10 @@ class Farm1(gym.Env):
         observation = observation_hide_final_state_of_plants(
             farmgymobs_to_obs(obs1), id_of_plants_stage=7
         )
-        return observation, reward, is_done, info
+        if self.api_compatibility:
+            return step_api_compatibility((observation, reward, False, is_done, info), output_truncation_bool=False)
+        else:
+            return observation, reward, False, is_done, info
 
     def num_to_action(self, num):
         if num == 1:
