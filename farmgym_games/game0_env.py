@@ -1,6 +1,7 @@
 import gym
 from gym import spaces
-import farmgym_games.farm1.farm as cb
+from gym.utils.step_api_compatibility import step_api_compatibility 
+import farmgym_games.farm0.farm as cb
 from farmgym_games.utils import (
     farmgymobs_to_obs,
     update_farm_writer,
