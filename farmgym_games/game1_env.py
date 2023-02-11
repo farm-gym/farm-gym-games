@@ -93,7 +93,7 @@ class Farm1(gym.Env):
         "microlife health index (%)",
     ]
     metadata = {"render_modes": ["human", "rgb_array"], "render_fps":3}
-    def __init__(self, render_mode = "human", api_compatibility = False):
+    def __init__(self, render_mode = "rgb_array", api_compatibility = False):
         # init base classes
         gym.Env.__init__(self)
         self.api_compatibility = api_compatibility
@@ -270,7 +270,7 @@ class Farm1(gym.Env):
         font = ImageFont.truetype(str(CURRENT_DIR) + "/rendering/Gidole-Regular.ttf", size=font_size)
         font_action = ImageFont.truetype(
             str(CURRENT_DIR) + "/rendering/Gidole-Regular.ttf",
-            size=im_width * XX // (18),
+            size=im_width * XX // 18,
         )
 
         
@@ -329,11 +329,9 @@ class Farm1(gym.Env):
             image_t = field.entities[e].to_thumbnailimage()
             if image_t != None:
                 dd = ImageDraw.Draw(image_t)
-                # dd.rectangle(((2,2),(im_width-2,im_height-2)), fill="#ff000000", outline="red")
                 xx = offsetx + i * im_width
                 yy = offset_header + field.Y * im_height + offset_sep + j * im_height
                 dashboard_picture.paste(image_t, (xx, yy), image_t)
-                # d.rectangle(((xx,yy),(xx+im_width,yy+im_height)), fill="#ffffff00", outline="red")
                 index += 1
 
         offset_field_y = (
