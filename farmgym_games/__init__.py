@@ -1,5 +1,6 @@
 from .game0_env import Farm0
 from .game1_env import Farm1
+from .utils import  farmgymobs_to_obs, get_desc_from_value
 import  gym
 
 gym.envs.register(
