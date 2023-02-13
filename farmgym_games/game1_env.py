@@ -248,7 +248,7 @@ class Farm1(gym.Env):
         from PIL import Image, ImageDraw, ImageFont
         field = self.farm.fields["Field-0"]
 
-        im_width, im_height = 1216, 1216
+        im_width, im_height = 32, 32
         XX = field.X+1
         YY = (field.Y
                 + (int)(
