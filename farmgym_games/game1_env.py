@@ -149,6 +149,7 @@ class Farm1(gym.Env):
         _, reward, is_done, info = self.farm.farmgym_step(self.num_to_action(action))
         obs1, _, _, info = self.farm.gym_step([])
 
+
         if hasattr(reward, "__len__"):
             reward = reward[0]
 
@@ -248,7 +249,7 @@ class Farm1(gym.Env):
         from PIL import Image, ImageDraw, ImageFont
         field = self.farm.fields["Field-0"]
 
-        im_width, im_height = 32, 32
+        im_width, im_height = 64, 64
         XX = field.X+1
         YY = (field.Y
                 + (int)(
@@ -259,7 +260,7 @@ class Farm1(gym.Env):
                         / field.X
                     )
                 ))
-        font_size = im_width * XX // 6
+        font_size = im_width * XX // 10
 
         offsetx = im_width // 2
         offset_header = font_size * 2
@@ -298,9 +299,8 @@ class Farm1(gym.Env):
             ),
             day_string,
             font=font,
-            fill=(100, 100, 100),
-            stroke_width=2,
-            stroke_fill="black",
+            fill="black",
+            #stroke_fill="black",
         )
 
         # offset_field=0
@@ -314,9 +314,7 @@ class Farm1(gym.Env):
             ),
             text,
             font=font,
-            fill=(100, 100, 100),
-            stroke_width=2,
-            stroke_fill="black",
+            fill="black",
         )
 
         index = 0
@@ -368,9 +366,7 @@ class Farm1(gym.Env):
                         (xx_a, yy_a),
                         text,
                         font=font_action,
-                        fill=(100, 100, 100),
-                        stroke_width=1,
-                        stroke_fill="black",
+                        fill="black",
                     )
                     nb_a += 1
 
