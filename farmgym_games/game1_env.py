@@ -92,7 +92,7 @@ class Farm1(gym.Env):
         "weight of fruits",
         "microlife health index (%)",
     ]
-    metadata = {"render_modes": ["human", "rgb_array"], "render_fps":3}
+    metadata = {"render_modes": ["human", "rgb_array"], "render_fps":4}
     def __init__(self, render_mode = "rgb_array", api_compatibility = False):
         # init base classes
         gym.Env.__init__(self)
@@ -237,7 +237,7 @@ class Farm1(gym.Env):
         image = self._render_frame()
         if self.render_mode == "human":
             cv2.imshow("Game", image)
-            cv2.waitKey(10)
+            cv2.waitKey(1000//self.metadata['render_fps'])
         elif self.render_mode == "rgb_array":
             return image
         else:

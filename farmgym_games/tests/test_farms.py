@@ -1,6 +1,6 @@
 import pytest
 from rlberry.utils.check_gym_env import check_gym_env
-from rlberry_farms import Farm0, Farm1
+from farmgym_games import Farm0, Farm1
 from rlberry.agents import AgentWithSimplePolicy
 
 

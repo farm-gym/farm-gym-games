@@ -1,3 +1,3 @@
-recursive-include rlberry_farms *.yaml
-recursive-include rlberry_farms *.csv
-recursive-include rlberry_farms *.ttf
+recursive-include farmgym_games *.yaml
+recursive-include farmgym_games *.csv
+recursive-include farmgym_games *.ttf
