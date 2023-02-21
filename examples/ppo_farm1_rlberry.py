@@ -35,7 +35,7 @@ value_configs = {
 }
 
 
-env_ctor, env_kwargs = gym_make, {"id": "Farm1-v0"}
+env_ctor, env_kwargs = gym_make, {"id": "OldV21Farm0-v0"}
 
 if __name__ == "__main__":
     manager = AgentManager(
