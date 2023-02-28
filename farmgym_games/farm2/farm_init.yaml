@@ -1,6 +1,6 @@
   Field-0:
     Weather-0:
-      day#int365: 50
+      day#int365: 100
     Soil-0:
       available_N#g: 1000.0
       available_P#g: 1000.0

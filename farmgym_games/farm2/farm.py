@@ -52,12 +52,8 @@ def env():
     free_observations.append(("Field-0", "Weather-0", "consecutive_dry#day", []))
 
     free_observations.append(("Field-0", "Plant-0", "stage", []))
-    free_observations.append(("Field-0", "Plant-0", "fruits_per_plant#nb", []))
-
     free_observations.append(("Field-0", "Plant-0", "size#cm", []))
-
-    free_observations.append(("Field-0", "Soil-0", "wet_surface#m2.day-1", []))
-
+    free_observations.append(("Field-0", "Plant-0", "fruits_per_plant#nb", []))
     free_observations.append(("Field-0", "Plant-0", "fruit_weight#g", []))
 
 

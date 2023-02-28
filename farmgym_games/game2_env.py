@@ -23,9 +23,9 @@ class Farm2(gym.Env):
     Farm2 is a simplification of Farm1.
     The advised maximum episode length is 365 (as in 365 days).
 
-    The Farm has the weather of Lille in France (e.g. well suited for the culture of beans), the initial day is 1. Initially the field is healthy and contains all the nutrient necessary to the plant.
+    The Farm has the weather of Lille in France (e.g. well suited for the culture of beans), the initial day is 80. Initially the field is healthy and contains all the nutrient necessary to the plant.
 
-    The reward is the number of grams of harvested beans, and there is a negative reward for very low microlife in soil (due to pesticides).
+    The reward is the number of grams of harvested beans.
 
     The condition for end of episode (self.step returns done) is that the day is >= 365 or that the plant is dead.
 
@@ -48,17 +48,16 @@ class Farm2(gym.Env):
         * sun-exposure (from 1 to 5)
         * consecutive dry day (int)
         * stage of growth of the plant (int)
-        * size of the plant in cm.
-        * Soil wet_surface#m2.day-1
-        * Weight of fruits (g)
+        * size of the plant in cm
+        * numbre of fruits (int)
+        * weight of fruits (g).
 
     Actions:
         The actions are :
     
         * doing nothing.
-        * watering the field (1L of water)
+        * watering the field (1L or 5L of water)
         * harvesting
-        * sow some seeds
     """
 
     name = "Farm1"
@@ -87,14 +86,11 @@ class Farm2(gym.Env):
         self.farm.gym_step([])
 
         # observation and action spaces
-        # Day, temp mean, temp min, temp max, rain amount, sun exposure, consecutive dry day, stage, size#cm, nb of fruits,
-        # wet surface, weight of fruits
-        high = np.array(
-            [365, 50, 50, 50, 300, 10, 10, 10, 100, 300, 10, 5000]
-        )
-        low = np.array([0, -50, -50, -50, 0, 0, 0, 0, 0, 0, 0, 0])
+        # Day, temp mean, temp min, temp max, rain amount, sun exposure, consecutive dry day, stage, size#cm, fruit weight, nb of fruits, weights
+        high = np.array([365, 50, 50, 50, 300, 7, 100, 10, 200, 100, 5000])
+        low = np.array([0, -50, -50, -50, 0, 0, 0, 0, 0, 0, 0])
         self.observation_space = spaces.Box(low=low, high=high)
-        self.action_space = spaces.Discrete(4)
+        self.action_space = spaces.Discrete(5)
 
         # monitoring writer
         params = {}
@@ -157,8 +153,18 @@ class Farm2(gym.Env):
                 )
             ]
         elif num == 2:
-            return [("BasicFarmer-0", "Field-0", "Plant-0", "harvest", {})]
+            return [
+                (
+                    "BasicFarmer-0",
+                    "Field-0",
+                    "Soil-0",
+                    "water_discrete",
+                    {"plot": (0, 0), "amount#L": 5, "duration#min": 60},
+                )
+            ]
         elif num == 3:
+            return [("BasicFarmer-0", "Field-0", "Plant-0", "harvest", {})]
+        elif num == 4:
             return [
                 (
                     "BasicFarmer-0",
