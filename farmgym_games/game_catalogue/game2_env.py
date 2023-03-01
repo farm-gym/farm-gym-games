@@ -5,7 +5,7 @@ import farmgym_games.game_catalogue.farm2.farm as cb
 import numpy as np
 import os
 
-from farmgym_games.utils import (
+from farmgym_games.game_builder.utils import (
     farmgymobs_to_obs,
     observation_hide_final_state_of_plants,
 )
