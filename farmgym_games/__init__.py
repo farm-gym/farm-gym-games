@@ -10,29 +10,29 @@ gym.envs.register(
 
 gym.envs.register(
      id='OldV21Farm0-v0',
-     entry_point='farmgym_games.game0_env:Farm0',
+     entry_point='farmgym_games.game_catalogue.game0_env:Farm0',
     kwargs={"api_compatibility":True}
 )
 
 gym.envs.register(
      id='Farm1-v0',
-     entry_point='farmgym_games.game1_env:Farm1',
+     entry_point='farmgym_games.game_catalogue.game1_env:Farm1',
 )
 
 gym.envs.register(
      id='OldV21Farm1-v0',
-     entry_point='farmgym_games.game1_env:Farm1',
+     entry_point='farmgym_games.game_catalogue.game1_env:Farm1',
     kwargs={"api_compatibility":True}
 )
 
 gym.envs.register(
      id='Farm2-v0',
-     entry_point='farmgym_games.game2_env:Farm2',
+     entry_point='farmgym_games.game_catalogue.game2_env:Farm2',
 )
 
 gym.envs.register(
      id='OldV21Farm2-v0',
-     entry_point='farmgym_games.game2_env:Farm2',
+     entry_point='farmgym_games.game_catalogue.game2_env:Farm2',
     kwargs={"api_compatibility":True}
 )
 
