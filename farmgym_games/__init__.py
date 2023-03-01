@@ -5,7 +5,7 @@ import  gym
 
 gym.envs.register(
      id='Farm0-v0',
-     entry_point='farmgym_games.game0_env:Farm0',
+     entry_point='farmgym_games.game_catalogue.game0_env:Farm0',
 )
 
 gym.envs.register(
