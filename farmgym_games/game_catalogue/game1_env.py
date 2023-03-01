@@ -1,12 +1,12 @@
 import gym
 from gym import spaces
 from gym.utils.step_api_compatibility import step_api_compatibility 
-import farmgym_games.farm1.farm as cb
+import farmgym_games.game_catalogue.farm1.farm as cb
 import numpy as np
 import time
 import os
 
-from farmgym_games.utils import (
+from farmgym_games.game_builder.utils import (
     farmgymobs_to_obs,
     update_farm_writer,
     observation_hide_final_state_of_plants,

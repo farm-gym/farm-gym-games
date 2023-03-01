@@ -1,20 +1,16 @@
 import gym
 from gym import spaces
 from gym.utils.step_api_compatibility import step_api_compatibility 
-import farmgym_games.farm2.farm as cb
+import farmgym_games.game_catalogue.farm2.farm as cb
 import numpy as np
-import time
 import os
 
 from farmgym_games.utils import (
     farmgymobs_to_obs,
-    update_farm_writer,
     observation_hide_final_state_of_plants,
 )
 
-import cv2 
-import matplotlib.pyplot as plt
-import PIL.Image as Image
+import cv2
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
