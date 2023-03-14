@@ -39,7 +39,7 @@ class Farm0(gym.Env):
         * consecutive dry day (int)
         * stage of growth of the plant (int)
         * size of the plant in cm
-        * numbre of fruits (int)
+        * number of fruits (int)
         * weight of fruits (g).
 
     Actions:
