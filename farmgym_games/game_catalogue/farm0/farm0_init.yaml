@@ -1,7 +1,7 @@
 Initial:
   Field-0:
     Weather-0:
-      day#int365: 100
+      day#int365: 0
     Soil-0:
       available_N#g: 5000.0
       available_P#g: 5000.0
