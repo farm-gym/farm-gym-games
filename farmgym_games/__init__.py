@@ -1,5 +1,5 @@
 from farmgym_games.game_catalogue.game0_env import Farm0
-#from farmgym_games.game_catalogue.game1_env import Farm1
+from farmgym_games.game_catalogue.game1_env import Farm1
 from game_builder.utils import  farmgymobs_to_obs, get_desc_from_value
 import  gym
 
