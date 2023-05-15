@@ -50,29 +50,6 @@ observation-cost:
       cumulated_stress_water#L: 1
       grow_size_threshold#cm: 1
       fruit_weight_threshold#g: 1
-    Birds-0:
-      population#nb: 1
-      total_cumulated_birds#nb: 1
-    Facility-0:
-      scarecrow: 1
-    Fertilizer-0:
-      amount#kg: 1
-      total_cumulated_scattered_amount#kg: 1
-    Pests-0:
-      plot_population#nb: 1
-      onplant_population#nb: 1
-      total_cumulated_plot_population#nb: 1
-    Pollinators-0:
-      occurrence#bin: 1
-      total_cumulated_occurrence#nb: 1
-    Cide-0:
-      amount#kg: 1
-      total_cumulated_scattered_amount#kg: 1
-    Weeds-0:
-      grow#nb: 1
-      seeds#nb: 1
-      flowers#nb: 1
-      total_cumulated_plot_population#nb: 1
 intervention-cost:
   Field-0:
     Soil-0:
@@ -81,20 +58,7 @@ intervention-cost:
     Plant-0:
       sow: 1
       harvest: 1
-      remove: 1
-    Facility-0:
-      put_scarecrow: 1
-      remove_scarecrow: 1
-    Fertilizer-0:
-      scatter: 1
-      scatter_bag: 1
-    Cide-0:
-      scatter: 1
-      scatter_bag: 1
-    Cide-1:
-      scatter: 1
-      scatter_bag: 1
-    Weeds-0:
+      micro_harvest: 1
       remove: 1
 reward-mix:
      weight_biodiversitycounts: 0.
@@ -110,3 +74,4 @@ final-reward-mix:
      weight_harvest: 1.
      weight_stagecount: 0.
      weight_stagetransition: 0.
+
