@@ -108,6 +108,7 @@ class Farm0(gym.Env):
         #   To match this 2, we run the 'farmgy observation step ("morning")' right after the action.
         #   With this method, it will be like classic RL 'step' for the user
         _, reward, is_done, info = self.farm.farmgym_step(self.num_to_action(action))
+        #_, reward, is_done, info = self.farm.farmgym_step(self.farm.gymaction_to_discretized_farmgymaction([action]))
         obs1, _, _, info = self.farm.gym_step([])
 
         observation = observation_hide_final_state_of_plants( farmgymobs_to_obs(obs1), id_of_plants_stage=7)

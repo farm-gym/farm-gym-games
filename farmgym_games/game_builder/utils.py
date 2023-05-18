@@ -43,7 +43,7 @@ def get_last_monitor_values(writer):
 
 def get_desc_from_value(id_to_desc, item_name_to_desc):
 
-    # self.env.farm.fields.entitys.Plant-0.variables.global_stage
+    # self.env.farm.fields.entities.Plant-0.variables.global_stage
     plant_stage = {
         0: "none",
         1: "seed",
@@ -60,7 +60,7 @@ def get_desc_from_value(id_to_desc, item_name_to_desc):
         12: "dead",
     }
 
-    # self.env.farm.fields.entitys.Weather-0.variables.rain_amount
+    # self.env.farm.fields.entities.Weather-0.variables.rain_amount
     rain_amount = {
         0: "None",
         1: "Light",
