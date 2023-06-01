@@ -1,5 +1,3 @@
-#from farmgym.v2.games.rungame import Farmgym_RandomAgent, run_gym_xp
-
 from farmgym_games.game_agents.basic_agents import Farmgym_RandomAgent
 from farmgym_games.game_builder.run_farm import run_gym_xp
 from farmgym_games.game_builder.make_farm import make_farm
