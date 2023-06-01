@@ -26,10 +26,19 @@ class Farmgym_RandomAgent(Farmgym_Agent):
         self.x = 1
         self.mode = mode
 
+    def get_harvest_index(self, n_obs, n_act):
+        for i in range(n_obs, n_act):
+                a = self.farm.gymaction_to_discretized_farmgymaction([i])
+                fa, fi, e, a, p = a[0]
+                if a == "harvest":
+                    return [i]
+        return [n_act]
+
     def choose_action(self):
         #if self.mode == "POMDP":
             self.x += 0.25
             threshold = 10 / self.x
             if np.random.rand() > threshold:
-                return [27] # TODO: choose it be to harvest action !
+                action = self.get_harvest_index(len(self.farm.farmgym_observation_actions), self.farm.action_space.space.n )
+                return action
             return self.farm.action_space.sample()

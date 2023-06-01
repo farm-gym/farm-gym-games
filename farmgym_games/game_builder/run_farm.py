@@ -30,6 +30,10 @@ def run_gym_xp(farm, agent, max_steps=np.infty, render=True, monitoring=False):
             farm.render()
         agent.update(obs, reward, terminated, truncated, info)
         i += 1
+    
+    if farm.monitor != None:
+        farm.monitor.stop()
+
     if render == "image":
         farm.render()
         generate_video(image_folder=".", video_name="farm.avi")
