@@ -1,5 +1,4 @@
-import numpy as np
-
+import numpy as np 
 
 def farmgymobs_to_obs(obs_lst):
     """
@@ -29,7 +28,8 @@ def update_farm_writer(writer, monitor_variables, farm, iteration):
 
 def observation_hide_final_state_of_plants(obs, id_of_plants_stage):
     """
-    Update the plants 'stage of growth' in observations to hide when the fruit is ready to be harvested
+    Update the plants 'stage of growth' in observations to hide 
+    when the fruit is ready to be harvested
     """
     if obs[id_of_plants_stage] in [6, 7, 8, 9]:
         obs[id_of_plants_stage] = 6
