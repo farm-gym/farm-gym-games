@@ -1,10 +1,9 @@
-from farmgym_games.game_agents.basic_agents import Farmgym_RandomAgent
-from farmgym_games.game_builder.run_farm import run_gym_xp
-from farmgym_games.game_builder.make_farm import make_farm
-
-from farmgym.v2.rendering.monitoring import make_variables_to_be_monitored
-
 import os
+
+from farmgym_games.game_agents.basic_agents import Farmgym_RandomAgent
+from farmgym_games.game_builder.make_farm import make_farm
+from farmgym_games.game_builder.run_farm import run_gym_xp
+
 
 def env():
     yaml_path = os.path.join(os.path.dirname(__file__),"farm0.yaml")

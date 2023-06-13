@@ -1,8 +1,8 @@
-from farmgym_games.game_catalogue.farm1.farm import env as Farm1
 from farmgym.v2.rendering.monitoring import make_variables_to_be_monitored
 
 from farmgym_games.game_agents.basic_agents import Farmgym_RandomAgent
 from farmgym_games.game_builder.run_farm import run_gym_xp
+from farmgym_games.game_catalogue.farm1.farm import env as Farm1
 
 farm = Farm1()
 farm.add_monitoring(
@@ -71,7 +71,8 @@ run_gym_xp(farm, agent, max_steps=100)
 
 
 
-## Monitoring uses Tensorboard by default, but can be replaced by Matplotlib, by disabling Tensorboard
+## Monitoring uses Tensorboard by default, but can be replaced by Matplotlib,
+## by disabling Tensorboard
 
 # farm = Farm1()
 # farm.add_monitoring(

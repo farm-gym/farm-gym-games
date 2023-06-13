@@ -16,7 +16,7 @@ class Farmgym_Agent:
         pass
 
     def choose_action(self):
-        raise NotImplemented
+        raise NotImplementedError
         # return self.farm.action_space.sample()
 
 
@@ -39,6 +39,8 @@ class Farmgym_RandomAgent(Farmgym_Agent):
             self.x += 0.25
             threshold = 10 / self.x
             if np.random.rand() > threshold:
-                action = self.get_harvest_index(len(self.farm.farmgym_observation_actions), self.farm.action_space.space.n )
+                obs_actions_len = len(self.farm.farmgym_observation_actions)
+                action = self.get_harvest_index(obs_actions_len,
+                 self.farm.action_space.space.n)
                 return action
             return self.farm.action_space.sample()

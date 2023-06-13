@@ -1,12 +1,12 @@
 import numpy as np
 import pytest
+from gymnasium.spaces import Discrete
 
+from farmgym_games.game_agents.basic_agents import Farmgym_RandomAgent
+from farmgym_games.game_builder.check_gym_env import check_gym_env
 from farmgym_games.game_catalogue.farm0.farm import env as Farm0
 from farmgym_games.game_catalogue.farm1.farm import env as Farm1
 from farmgym_games.game_catalogue.farm2.farm import env as Farm2
-from farmgym_games.game_builder.check_gym_env import check_gym_env
-from farmgym_games.game_agents.basic_agents import Farmgym_RandomAgent
-from gymnasium.spaces import Discrete
 
 ALL_ENVS = [Farm0, Farm1, Farm2]
 
@@ -17,12 +17,12 @@ def test_env(Env):
     """
     check_gym_env(Env())
 
-@pytest.mark.skip(reason="For some reason farms are note reproducible")
+@pytest.mark.skip(reason="For some reason farms are not reproducible")
 @pytest.mark.parametrize("Env", ALL_ENVS)
 def test_reproducibility(Env):
     """
     Check if the environment is reproducible in the sense that
-     it returns the same states when given the same seed.
+    it returns the same states when given the same seed.
     """
     env = Env()
     action = env.action_space.sample()
@@ -70,7 +70,6 @@ def test_farmgym_random_agent():
     agent.reset(env)
     for i in range(10):
         action = agent.choose_action()
-
         observation, reward, done, _, _ = agent.farm.step(action)
         actions.append(action)
     assert actions

@@ -2,15 +2,13 @@
 Based on https://github.com/openai/gym and rlberry check_gym_env and then modified for our purpose.
 """  # noqa: E501
 
-from typing import Union, Optional
 import inspect
+from typing import Optional, Union
 
 import gym
 import numpy as np
-from gym import logger
-from gym import spaces
-
 from farmgym.v2.gymUnion import MultiUnion
+from gym import logger, spaces
 
 
 def _is_numpy_array_space(space: spaces.Space) -> bool:

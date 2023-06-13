@@ -1,23 +1,17 @@
 # @title Interactive game (execute to play).
 #% load_extautoreload
 #% autoreload 2
+import time
 
-from rlberry.agents import AgentWithSimplePolicy
-from rlberry.manager import AgentManager, evaluate_agents, plot_writer_data
-from rlberry.envs import gym_make
-from farmgym_games.game_builder.utils import farmgymobs_to_obs, get_desc_from_value
-import numpy as np
-from IPython.display import display, clear_output
 import matplotlib.pyplot as plt
+import numpy as np
+from IPython.display import clear_output
+from rlberry.agents import AgentWithSimplePolicy
+from rlberry.utils.logging import set_level
 
 from farmgym_games.game_catalogue.farm0.farm import env as Farm0
 
-from rlberry.utils.logging import set_level
-
 set_level("WARNING")
-import gym
-import time
-
 
 class InteractiveAgent(AgentWithSimplePolicy):
     name = "InteractiveAgent"
@@ -30,7 +24,6 @@ class InteractiveAgent(AgentWithSimplePolicy):
     def fit(self, budget=3e5, **kwargs):
 
         observation = self.env.reset()
-        farmgym_obs = [" " for i in range(len(observation))]
         self.episode_reward = 0
         self.rewards = []
         for ep in range(int(budget)):

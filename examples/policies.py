@@ -1,11 +1,9 @@
-from farmgym_games.game_catalogue.farm1.farm import env as Farm1
-from farmgym.v2.rendering.monitoring import make_variables_to_be_monitored
-
-from farmgym_games.game_agents.basic_agents import Farmgym_RandomAgent
-from farmgym_games.game_builder.run_farm import run_policy_xp
-
-from farmgym.v2.policy_api import Policy_helper, Policy_API
 import copy
+
+from farmgym.v2.policy_api import Policy_API, Policy_helper
+
+from farmgym_games.game_builder.run_farm import run_policy_xp
+from farmgym_games.game_catalogue.farm1.farm import env as Farm1
 
 farm = Farm1()
 helper = Policy_helper(farm)
@@ -14,7 +12,7 @@ helper = Policy_helper(farm)
 policies = helper.get_policies()
 print(f"\nAll policies : {policies}\n")
 
-## It is possible also to select only policies for a specific entity 
+## It is possible also to select only policies for a specific entity
 plant_policies = helper.get_plant_policies()
 weeds_policies = helper.get_weeds_policies()
 soil_policies = helper.get_soil_policies()
@@ -38,6 +36,6 @@ combined = Policy_API.combine_policies([policies[0].api, policies[1].api, polici
 # or using addition operator
 combined = policies[0].api + policies[1].api + policies[2].api + policies[3].api
 
-# After combining the policies, we can run the obtained policy on Farm1 for example: 
+# After combining the policies, we can run the obtained policy on Farm1 for example:
 cumreward, cumcost = run_policy_xp(farm, copy.deepcopy(combined), max_steps=150)
 print(f"Combined policy run : cumreward = {cumreward}, cumcost = {cumcost}")

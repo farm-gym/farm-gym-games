@@ -1,17 +1,11 @@
-import gym
-from gym.envs.registration import register
-
-import numpy as np
-
 import os
 from pathlib import Path
 
+import numpy as np
+from gym.envs.registration import register
+
 file_path = Path(os.path.realpath(__file__))
 CURRENT_DIR = file_path.parent
-
-#from farmgym.v2.games import *
-
-
 
 def register_farms():
 
