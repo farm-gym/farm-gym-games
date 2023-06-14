@@ -58,26 +58,21 @@ def _check_obs(
     correspond to the declared one.
     """
     if not isinstance(observation_space, spaces.Tuple):
-        assert not isinstance(
-            obs, tuple
-        ), (f"The observation returned by the `{method_name}()`"
-        "method should be a single value, not a tuple")
+        assert not isinstance(obs, tuple), (
+            f"The observation returned by the `{method_name}()`" "method should be a single value, not a tuple"
+        )
 
     if isinstance(observation_space, spaces.Discrete):
-        assert np.isscalar(
-            obs
-        ), f"The observation returned by `{method_name}()` method must be a scalar"
+        assert np.isscalar(obs), f"The observation returned by `{method_name}()` method must be a scalar"
     elif isinstance(observation_space, MultiUnion):
         assert isinstance(obs, list)
     elif _is_numpy_array_space(observation_space):
-        assert isinstance(
-            obs, np.ndarray
-        ), f"The observation returned by `{method_name}()` method must be a numpy array"
+        assert isinstance(obs, np.ndarray), f"The observation returned by `{method_name}()` method must be a numpy array"
 
-    assert observation_space.contains(
-        obs
-    ), (f"The observation returned by the `{method_name}()`",
-         "method does not match the given observation space")
+    assert observation_space.contains(obs), (
+        f"The observation returned by the `{method_name}()`",
+        "method does not match the given observation space",
+    )
 
 
 def _check_box_obs(observation_space: spaces.Box, key: str = "") -> None:
@@ -97,24 +92,16 @@ def _check_box_obs(observation_space: spaces.Box, key: str = "") -> None:
     if np.any(np.greater(observation_space.low, observation_space.high)):
         assert False, "Agent's minimum observation value is greater than it's maximum"
     if observation_space.low.shape != observation_space.shape:
-        assert (
-            False
-        ), "Agent's observation_space.low and observation_space have different shapes"
+        assert False, "Agent's observation_space.low and observation_space have different shapes"
     if observation_space.high.shape != observation_space.shape:
-        assert (
-            False
-        ), "Agent's observation_space.high and observation_space have different shapes"
+        assert False, "Agent's observation_space.high and observation_space have different shapes"
 
 
 def _check_box_action(action_space: spaces.Box):
     if np.any(np.equal(action_space.low, -np.inf)):
-        logger.warn(
-            "Agent's minimum action space value is -infinity. This is probably too low."
-        )
+        logger.warn("Agent's minimum action space value is -infinity. This is probably too low.")
     if np.any(np.equal(action_space.high, np.inf)):
-        logger.warn(
-            "Agent's maxmimum action space value is infinity. This is probably too high"
-        )
+        logger.warn("Agent's maxmimum action space value is infinity. This is probably too high")
     if np.any(np.equal(action_space.low, action_space.high)):
         logger.warn("Agent's maximum and minimum action space values are equal")
     if np.any(np.greater(action_space.low, action_space.high)):
@@ -125,23 +112,18 @@ def _check_box_action(action_space: spaces.Box):
         assert False, "Agent's action_space.high and action_space have different shapes"
 
 
-def _check_returned_values(
-    env: gym.Env, observation_space: spaces.Space, action_space: spaces.Space
-) -> None:
+def _check_returned_values(env: gym.Env, observation_space: spaces.Space, action_space: spaces.Space) -> None:
     """
     Check the returned values by the env when calling `.reset()` or `.step()` methods.
     """
-    # because env inherits from gym.Env, 
+    # because env inherits from gym.Env,
     # we assume that `reset()` and `step()` methods exists
     obs = env.reset()
     obs, _ = obs
     if isinstance(observation_space, spaces.Dict):
-        assert isinstance(
-            obs, dict
-        ), "The observation returned by `reset()` must be a dictionary"
+        assert isinstance(obs, dict), "The observation returned by `reset()` must be a dictionary"
         for key in observation_space.spaces.keys():
             try:
-
                 _check_obs(obs[key], observation_space.spaces[key], "reset")
             except AssertionError as e:
                 raise AssertionError(f"Error while checking key={key}: " + str(e))
@@ -150,20 +132,15 @@ def _check_returned_values(
 
     # Sample a random action
     action = action_space.sample()
-    data = env.step(action) 
+    data = env.step(action)
 
-    assert (
-        len(data) == 5
-    ), ("The `step()` method must return four values:"
-    "observation, reward, terminated, truncated, info")
+    assert len(data) == 5, "The `step()` method must return four values:" "observation, reward, terminated, truncated, info"
 
     # Unpack
     obs, reward, done, truncated, info = data
 
     if isinstance(observation_space, spaces.Dict):
-        assert isinstance(
-            obs, dict
-        ), "The observation returned by `step()` must be a dictionary"
+        assert isinstance(obs, dict), "The observation returned by `step()` must be a dictionary"
         for key in observation_space.spaces.keys():
             try:
                 _check_obs(obs[key], observation_space.spaces[key], "step")
@@ -174,19 +151,13 @@ def _check_returned_values(
         _check_obs(obs, observation_space, "step")
 
     # We also allow int because the reward will be cast to float
-    assert isinstance(
-        reward, (float, int, np.float32)
-    ), "The reward returned by `step()` must be a float"
+    assert isinstance(reward, (float, int, np.float32)), "The reward returned by `step()` must be a float"
     assert isinstance(done, bool), "The `done` signal must be a boolean"
-    assert isinstance(
-        info, dict
-    ), "The `info` returned by `step()` must be a python dictionary"
+    assert isinstance(info, dict), "The `info` returned by `step()` must be a python dictionary"
 
 
 # Check render cannot be covered by CI
-def _check_render(
-    env: gym.Env, warn: bool = True, headless: bool = False
-) -> None:  # pragma: no cover
+def _check_render(env: gym.Env, warn: bool = True, headless: bool = False) -> None:  # pragma: no cover
     """
     Check the declared render modes and the `render()`/`close()`
     method of the environment.
@@ -230,9 +201,7 @@ def _check_reset_seed(env: gym.Env, seed: Optional[int] = None) -> None:
         )
 
 
-def check_gym_env(
-    env: gym.Env, warn: bool = True, skip_render_check: bool = True
-) -> None:
+def check_gym_env(env: gym.Env, warn: bool = True, skip_render_check: bool = True) -> None:
     """
     Check that an environment follows Gym API.
     This is particularly useful when using a custom environment.
@@ -256,14 +225,10 @@ def check_gym_env(
         assert str(e) == "Cannot call env.step() before calling reset()"
 
     # Warn the user if needed.
-    # A warning means that the environment may run but 
+    # A warning means that the environment may run but
     # not work properly with popular RL libraries.
     if warn:
-        obs_spaces = (
-            observation_space.spaces
-            if isinstance(observation_space, spaces.Dict)
-            else {"": observation_space}
-        )
+        obs_spaces = observation_space.spaces if isinstance(observation_space, spaces.Dict) else {"": observation_space}
         for key, space in obs_spaces.items():
             if isinstance(space, spaces.Box):
                 _check_box_obs(space, key)

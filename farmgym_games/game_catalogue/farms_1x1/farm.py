@@ -6,7 +6,7 @@ from farmgym_games.game_builder.run_farm import run_gym_xp
 
 
 def env():
-    yaml_path = os.path.join(os.path.dirname(__file__),"farm_lille_clay_bean.yaml")
+    yaml_path = os.path.join(os.path.dirname(__file__), "farm_lille_clay_bean.yaml")
     farm = make_farm(yaml_path)
     # farm.add_monitoring(
     #     make_variables_to_be_monitored(
@@ -16,6 +16,7 @@ def env():
     #     )
     # )
     return farm
+
 
 if __name__ == "__main__":
     agent = Farmgym_RandomAgent()
