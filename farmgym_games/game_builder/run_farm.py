@@ -51,6 +51,7 @@ def run_policy_xp(farm, policy, max_steps=np.infty):
     terminated = False
     i = 0
     while (not terminated) and i <= max_steps:
+        i += 1
         observations = farm.get_free_observations()
         observation_schedule = policy.observation_schedule(observations)
         observation, _, _, _, info = farm.farmgym_step(observation_schedule)
