@@ -11,7 +11,7 @@ Initial:
       wet_surface#m2.day-1: 0.0
       microlife_health_index#%: 70.0
     Plant-0:
-      stage: none
+      stage: seed
       population#nb: 1.0
     Fertilizer-0:
       amount#kg: 0
