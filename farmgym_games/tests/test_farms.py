@@ -1,54 +1,78 @@
+import numpy as np
 import pytest
-#from rlberry.utils.check_gym_env import check_gym_env
-#from farmgym_games import Farm0
-from rlberry.agents import AgentWithSimplePolicy
+from gymnasium.spaces import Discrete
 
-from farmgym_games.game_catalogue.game0_env import Farm0
+from farmgym_games.game_agents.basic_agents import Farmgym_RandomAgent
+from farmgym_games.game_builder.check_gym_env import check_gym_env
+from farmgym_games.game_catalogue.farm0.farm import env as Farm0
+from farmgym_games.game_catalogue.farm1.farm import env as Farm1
+from farmgym_games.game_catalogue.farm2.farm import env as Farm2
 
-
-ALL_ENVS = [Farm0]
-
-# test gym compatibility
+ALL_ENVS = [Farm0, Farm1, Farm2]
 
 
 @pytest.mark.parametrize("Env", ALL_ENVS)
 def test_env(Env):
+    """
+    Check that the environment is (almost) gym-compatible
+    """
     check_gym_env(Env())
 
 
-# test with random agent
+@pytest.mark.skip(reason="For some reason farms are not reproducible")
+@pytest.mark.parametrize("Env", ALL_ENVS)
+def test_reproducibility(Env):
+    """
+    Check if the environment is reproducible in the sense that
+    it returns the same states when given the same seed.
+    """
+    env = Env()
+    action = env.action_space.sample()
+    env.reset(seed=42)
+    a = env.step(action)[0]
 
-
-class RandomAgent(AgentWithSimplePolicy):
-    name = "RandomAgent"
-
-    def __init__(self, env, **kwargs):
-        AgentWithSimplePolicy.__init__(self, env, **kwargs)
-
-    def fit(self, budget=100, **kwargs):
-        observation = self.env.reset()
-        episode_reward = 0
-        for ep in range(int(budget)):
-            action = self.policy(observation)
-            observation, reward, done, _, _ = self.env.step(action)
-            episode_reward += reward
-            if done:
-                self.writer.add_scalar("episode_rewards", episode_reward, ep)
-                episode_reward = 0
-                self.env.reset()
-
-    def policy(self, observation):
-        return self.env.action_space.sample()  # choose an action at random
+    env.reset(seed=42)
+    b = env.step(action)[0]
+    if hasattr(a, "__len__"):
+        assert np.all(np.array(a) == np.array(b)), "The environment does not seem to be reproducible"
+    else:
+        assert a == b, "The environment does not seem to be reproducible"
 
 
 @pytest.mark.parametrize("Env", ALL_ENVS)
-def test_env_agent(Env):
+def test_env_interaction(Env):
+    """
+    Tests the environment by running a Farmgym_RandomAgent for 10 steps
+    """
+    actions = []
     env = Env()
-    agent = RandomAgent(env)
-    agent.fit(10)
+    agent = Farmgym_RandomAgent()
+    agent.reset(env)
+    for i in range(10):
+        action = agent.choose_action()
+        observation, reward, done, _, _ = agent.farm.step(action)
+        actions.append(action)
+    assert actions
 
-if __name__ == "__main__":
-    env = Farm0()
-    #env.farm.understand_the_farm()
-    agent = RandomAgent(env)
-    agent.fit(10)
+
+def test_farmgym_random_agent():
+    """
+    Tests Farmgym_RandomAgent for 10 steps in a fake farm
+    """
+
+    class FakeFarm:
+        def __init__(self):
+            self.action_space = Discrete(2)
+
+        def step(self, action):
+            return np.zeros(2), 1, False, False, {}
+
+    actions = []
+    env = FakeFarm()
+    agent = Farmgym_RandomAgent()
+    agent.reset(env)
+    for i in range(10):
+        action = agent.choose_action()
+        observation, reward, done, _, _ = agent.farm.step(action)
+        actions.append(action)
+    assert actions

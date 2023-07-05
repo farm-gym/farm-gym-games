@@ -1,0 +1,33 @@
+Initial:
+  Field-0:
+    Weather-0:
+      day#int365: 1
+    Soil-0:
+      available_N#g: 40.0
+      available_P#g: 40.0
+      available_K#g: 40.0
+      available_C#g: 40.0
+      available_Water#L: 50.0
+      wet_surface#m2.day-1: 0.0
+      microlife_health_index#%: 70.0
+    Plant-0:
+      stage: seed
+      population#nb: 1.0
+    Fertilizer-0:
+      amount#kg: 0
+    Pollinators-0:
+      occurrence#bin: True
+    Cide-0:
+      amount#kg: 0.0
+    Pests-0:
+      plot_population#nb: 0.0
+      onplant_population#nb: 
+        Plant-0: 0.0
+    Cide-1:
+      amount#kg: 0.0
+Terminal:
+  [
+    [{state_variable: ["Field-0", "Weather-0", "day#int365", []], function: "value", operator: ">=", ref_value: 360}],
+    [{state_variable: ["Field-0", "Plant-0", "global_stage", []], function: "value", operator: "==", ref_value: "harvested"}],
+    [{state_variable: ["Field-0", "Plant-0", "global_stage", []], function: "value", operator: "==", ref_value: "dead"}],
+  ]

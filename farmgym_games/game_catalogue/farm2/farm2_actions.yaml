@@ -1,0 +1,51 @@
+params:
+  max_action_schedule_size: 1
+observations:
+  Free:
+    Field-0:
+      Weather-0:
+        day#int365: 
+        air_temperature: 
+          '*':
+        rain_amount:
+        sun_exposure#int5: 
+        consecutive_dry#day:
+      Plant-0:
+        stage: ['(0, 0)']
+        size#cm: ['(0, 0)']
+        fruits_per_plant#nb: ['(0, 0)']
+        fruit_weight#g: ['(0, 0)']
+  BasicFarmer-0:
+    Field-0:
+      Weather-0:
+        humidity_index#%: 
+        wind:  
+            speed#km.h-1:  
+        sun_exposure#int5: 
+        rain_amount: 
+        rain_intensity:  
+        consecutive_dry#day: 
+      Soil-0:
+        wet_surface#m2.day-1: ['(0, 0)']
+        microlife_health_index#%: ['(0, 0)']
+      Plant-0:
+        stage: ['(0, 0)']
+        population#nb: ['(0, 0)']
+        size#cm: ['(0, 0)']
+        fruits_per_plant#nb: ['(0, 0)']
+        fruit_weight#g: ['(0, 0)']
+interventions:
+  BasicFarmer-0:
+    Field-0:
+      Soil-0:
+        water_discrete: 
+          plot: ['(0, 0)']
+          amount#L: [1.0, 2.0, 3.0, 4.0, 5.0]
+          duration#min: [60]
+      Plant-0:
+        sow: 
+          plot: ['(0, 0)']
+          amount#seed: [1]
+          spacing#cm: [10]
+        harvest: 
+
