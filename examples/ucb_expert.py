@@ -37,7 +37,7 @@ class UCB:
         print(f"Current ucb scores = {[np.round(s,2) for s in ucb_scores]}")
 
 
-def create_expert(water_amount=1, delayed_policy=0):
+def create_expert(helper, water_amount=1, delayed_policy=0):
     """
     Create an expert policy.
     In order to create different versions of the expert, we either
@@ -45,7 +45,7 @@ def create_expert(water_amount=1, delayed_policy=0):
     """
 
     # Define delay to create delayed policies:
-    d = 0
+    d = delayed_policy
     # Define single policies
     water_soil_day1_5l = helper.create_water_soil(amount=water_amount, delay=0 + d, day=1)
     herbicide_day2 = helper.create_scatter_cide(amount=1, delay=0 + d, day=2)
@@ -69,17 +69,17 @@ def create_expert(water_amount=1, delayed_policy=0):
 farm = Farm1()
 helper = Policy_helper(farm)
 
-policy1 = create_expert(1, 0)
-policy2 = create_expert(3, 0)
-policy3 = create_expert(5, 0)
-policy4 = create_expert(1, 5)
-policy5 = create_expert(3, 5)
-policy6 = create_expert(5, 5)
+policy1 = create_expert(helper, 1, 0)
+policy2 = create_expert(helper, 3, 0)
+policy3 = create_expert(helper, 5, 0)
+policy4 = create_expert(helper, 1, 5)
+policy5 = create_expert(helper, 3, 5)
+policy6 = create_expert(helper, 5, 5)
 
 policies = [policy1, policy2, policy3, policy4, policy5, policy5]
 
 bandit = UCB(policies)
-for i in range(1000):
+for i in range(301):
     if i % 50 == 0:
         print(f"Step = {i}")
         bandit.get_scores()
