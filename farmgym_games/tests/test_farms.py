@@ -19,7 +19,6 @@ def test_env(Env):
     check_gym_env(Env())
 
 
-@pytest.mark.skip(reason="For some reason farms are not reproducible")
 @pytest.mark.parametrize("Env", ALL_ENVS)
 def test_reproducibility(Env):
     """
