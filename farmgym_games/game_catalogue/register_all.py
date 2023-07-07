@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 import numpy as np
-from gym.envs.registration import register
+from gymnasium.envs.registration import register
 
 file_path = Path(os.path.realpath(__file__))
 CURRENT_DIR = file_path.parent
