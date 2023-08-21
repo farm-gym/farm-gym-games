@@ -7,8 +7,7 @@ Initial:
       available_P#g: 1000.0
       available_K#g: 1000.0
       available_C#g: 1000.0
-      available_Water#L: 50.0
-      wet_surface#m2.day-1: 0.0
+      available_Water#L: 200.0
       microlife_health_index#%: 100.0
     Plant-0:
       stage: seed
