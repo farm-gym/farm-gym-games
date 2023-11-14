@@ -22,7 +22,7 @@ Farm:
   Farmer-0:
     type: basic
     parameters:
-      max_daily_interventions: 1
+      max_daily_interventions: 3 # TODO : Maybe change it back to 1
       max_daily_observations: 2
 actions: actions.yaml
 score: score.yaml
