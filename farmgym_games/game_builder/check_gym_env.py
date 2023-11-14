@@ -5,10 +5,10 @@ Based on https://github.com/openai/gym and rlberry check_gym_env and then modifi
 import inspect
 from typing import Optional, Union
 
-import gym
+import gymnasium as gym
 import numpy as np
 from farmgym.v2.gymUnion import MultiUnion
-from gym import logger, spaces
+from gymnasium import logger, spaces
 
 
 def _is_numpy_array_space(space: spaces.Space) -> bool:
