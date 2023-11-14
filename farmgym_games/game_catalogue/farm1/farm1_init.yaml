@@ -7,7 +7,7 @@ Initial:
       available_P#g: 40.0
       available_K#g: 40.0
       available_C#g: 40.0
-      available_Water#L: 50.0
+      available_Water#L: 200.0
       wet_surface#m2.day-1: 0.0
       microlife_health_index#%: 70.0
     Plant-0:

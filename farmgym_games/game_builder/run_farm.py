@@ -21,6 +21,8 @@ def run_gym_xp(farm, agent, max_steps=np.infty, render=True, monitoring=False):
 
     terminated = False
     i = 0
+    cumreward = 0.0
+    cumcost = 0.0
     while (not terminated) and i <= max_steps:
         action = agent.choose_action()
         obs, reward, terminated, truncated, info = farm.step(action)
@@ -30,6 +32,9 @@ def run_gym_xp(farm, agent, max_steps=np.infty, render=True, monitoring=False):
         elif render == "image":
             farm.render()
         agent.update(obs, reward, terminated, truncated, info)
+        int_cost = info["intervention cost"]
+        cumreward += reward
+        cumcost += int_cost
         i += 1
 
     if farm.monitor is not None:
@@ -39,6 +44,8 @@ def run_gym_xp(farm, agent, max_steps=np.infty, render=True, monitoring=False):
         farm.render()
         generate_video(image_folder=".", video_name="farm.avi")
         os.chdir("../")
+    
+    return cumreward, cumcost
 
 
 def run_policy_xp(farm, policy, max_steps=np.infty):
