@@ -1,16 +1,16 @@
 observation-cost:
   Field-0:
     Weather-0:
+      year#int100: 1
       day#int365: 1
       air_temperature: 1
-      humidity_index#%: 1
+      humidity#%: 1
       wind: 1
-      sun_exposure#int5: 1
-      rain_amount: 1
-      rain_intensity: 1
+      clouds#%: 1
+      rain_amount#mm.day-1: 1
       consecutive_frost#day: 1
       consecutive_dry#day: 1
-      air_temperature.forecast: 1
+      forecast: 1
     Soil-0:
       available_N#g: 1
       available_P#g: 1
@@ -74,4 +74,3 @@ final-reward-mix:
      weight_harvest: 1.
      weight_stagecount: 0.
      weight_stagetransition: 0.
-

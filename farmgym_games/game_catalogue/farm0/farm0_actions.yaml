@@ -1,5 +1,6 @@
 params:
   max_action_schedule_size: 1
+  number_of_bins_to_discretize_continuous_actions: 11
 observations:
   Free:
     Field-0:
@@ -39,7 +40,5 @@ interventions:
         water_discrete: 
           plot: ['(0, 0)']
           amount#L: [1.0, 2.0, 3.0, 4.0, 5.0]
-          duration#min: [60]
       Plant-0:
-        harvest: 
-
+        harvest:
