@@ -9,18 +9,25 @@ Farm:
       width#nb: 1
       scale#m: 1.0
     entities:
-      - Weather: montpellier
-      - Soil: clay
-      - Plant: tomato
+      - Weather: lille
+      - Soil:  clay
+      - Plant: bean
+      - Pollinators: bee
   Farmer-0:
     type: basic
     parameters:
       max_daily_interventions: 3
       max_daily_observations: 2
+day_path: {"field":"Field-0", "entity":"Weather-0", "variable": "day#int365"}
 actions: actions.yaml
 score: score.yaml
 initialization: init.yaml
 interaction_mode: POMDP
+
+
+
+
+
 
 
 
