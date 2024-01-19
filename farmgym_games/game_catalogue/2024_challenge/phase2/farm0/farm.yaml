@@ -1,0 +1,29 @@
+# This farm is in Montpellier, harder to grow beans than in Lille
+Farm:
+  Field-0:
+    localization:
+      latitude#°: 43.62
+      longitude#°: 3.86
+      altitude#m: 10
+    shape:
+      length#nb: 1
+      width#nb: 1
+      scale#m: 1.0
+    entities:
+      - Weather: montpellier
+      - Soil:  clay
+      - Plant: bean
+      - Pollinators: bee
+      - Weeds: grass
+      - Pests: nice
+      - Fertilizer: fast_all
+  Farmer-0:
+    type: basic
+    parameters:
+      max_daily_interventions: 1
+      max_daily_observations: 2
+day_path: {"field":"Field-0", "entity":"Weather-0", "variable": "day#int365"}
+actions: actions.yaml
+score: score.yaml
+initialization: init.yaml
+interaction_mode: POMDP

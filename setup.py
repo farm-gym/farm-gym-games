@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-
+" pip install git+https://github.com/farm-gym/farm-gym/"
 __version__ = str(0.1)
 
 packages = find_packages(exclude=["docs", "notebooks", "assets"])
