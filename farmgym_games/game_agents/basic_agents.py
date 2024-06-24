@@ -44,3 +44,20 @@ class Farmgym_RandomAgent(Farmgym_Agent):
             )
             return action
         return self.farm.action_space.sample()
+
+
+class Farmgym_PolicyAgent(Farmgym_Agent):
+    def __init__(self, policy):
+        super(Farmgym_PolicyAgent, self).__init__()
+        self.policy = policy
+        self.observation = []
+
+    def update(self, obs, reward, terminated, truncated, info):
+        self.observation = obs
+    def choose_action(self):
+        if (self.farm.is_new_day):
+            schedule= self.policy.observation_schedule(self.observation)
+        else:
+            schedule= self.policy.intervention_schedule(self.observation)
+        print("AGENT:", schedule) #TODO: Convert from FarmGym [('BasicFarmer-0', 'Field-0', 'Plant-0', 'stage', [(0, 0)]),..]  to Gym [4,...]
+        return schedule

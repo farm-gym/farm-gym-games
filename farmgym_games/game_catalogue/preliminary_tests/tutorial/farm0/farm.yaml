@@ -19,7 +19,7 @@ Farm:
   Farmer-0:
     type: basic
     parameters:
-      max_daily_interventions: 5
+      max_daily_interventions: 1
       max_daily_observations: 2
 day_path: {"field":"Field-0", "entity":"Weather-0", "variable": "day#int365"}
 actions: actions.yaml
