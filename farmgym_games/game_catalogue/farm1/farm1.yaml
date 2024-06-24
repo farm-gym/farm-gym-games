@@ -1,8 +1,8 @@
 Farm:
   Field-0:
     localization:
-      latitude#°: 50.38
-      longitude#°: 3.03
+      latitude#°: 50.62
+      longitude#°: 3.05
       altitude#m: 10
     shape:
       length#nb: 1
@@ -10,26 +10,19 @@ Farm:
       scale#m: 1.0
     entities:
       - Weather: lille
-      - Soil: loam
+      - Soil:  clay
       - Plant: bean
-      - Fertilizer: slow_all
       - Pollinators: bee
-      - Weeds: base_weed
-      - Cide: herbicide
-      - Pests: basic
-      - Pollinators: bee
-      - Cide: pesticide
+      - Weeds: grass
+      - Pests: nice
+      - Fertilizer: fast_all
   Farmer-0:
     type: basic
     parameters:
       max_daily_interventions: 5
       max_daily_observations: 2
+day_path: {"field":"Field-0", "entity":"Weather-0", "variable": "day#int365"}
 actions: actions.yaml
 score: score.yaml
 initialization: init.yaml
-interaction_mode: AOMDP
-
-
-
-
-
+interaction_mode: POMDP
